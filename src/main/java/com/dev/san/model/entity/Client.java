@@ -15,7 +15,7 @@ public class Client {
     private String name;
     @Column(nullable = false, length = 11)
     private String cpf;
-    @Column
+    @Column(name = "register_date")
     private LocalDate registerDate;
 
 }
