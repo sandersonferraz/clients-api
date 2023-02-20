@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -24,10 +25,10 @@ public class Client implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     @Column(name = "full_name", nullable = false, length = 150)
-    @NotNull
+    @NotBlank
     private String fullName;
     @Column(nullable = false, unique = true, length = 11)
-    @NotNull
+    @NotBlank(message = "Mandatory CPF. Information not fund.")
     private String cpf;
     @Column(name = "service_date")
     private LocalDate serviceDate;

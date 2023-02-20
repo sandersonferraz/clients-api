@@ -13,6 +13,7 @@ import java.util.UUID;
 @Service
 @AllArgsConstructor
 public class ClientService {
+    private static final String NOT_FOUND = "Client not found!";
 
     private final ClientRepository clientRepository;
 
@@ -21,10 +22,13 @@ public class ClientService {
         return clientRepository.save(client);
     }
 
-    public List<Client> findAll() {return this.clientRepository.findAll();}
+    public List<Client> listAll()  {return this.clientRepository.findAll();}
 
-    public Optional<Client> findById(UUID id) {
-        return this.clientRepository.findById(id);
+    public Client findById(UUID id) {
+        Optional<Client> clientOptional = this.clientRepository.findById(id);
+        if (!clientOptional.isPresent())
+            throw new IllegalArgumentException(NOT_FOUND);
+        return clientOptional.get();
     }
 
     public void delete(Client client) {

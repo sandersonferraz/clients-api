@@ -15,7 +15,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CLientDto {
+public class ClientDto {
 
     private UUID id;
     @NotBlank
