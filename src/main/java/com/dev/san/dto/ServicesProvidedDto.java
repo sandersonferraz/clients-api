@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
-import java.util.UUID;
 
 @Data
 @NoArgsConstructor
@@ -17,7 +16,7 @@ import java.util.UUID;
 @Builder
 public class ServicesProvidedDto {
 
-    private UUID id;
+    private Integer id;
     @NotBlank
     @Size(max = 255)
     private String serviceDescription;

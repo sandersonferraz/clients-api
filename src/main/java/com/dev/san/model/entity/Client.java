@@ -1,16 +1,16 @@
 package com.dev.san.model.entity;
 
+import com.dev.san.dto.ClientDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.BeanUtils;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.UUID;
 
 @Entity
 @Data
@@ -23,7 +23,7 @@ public class Client implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    private Integer id;
     @Column(name = "full_name", nullable = false, length = 150)
     @NotBlank
     private String fullName;
@@ -36,6 +36,11 @@ public class Client implements Serializable {
     @PrePersist
     private void prePersist(){
         setServiceDate(LocalDate.now());
+    }
+
+    public Client convert(ClientDto clientDto){
+        BeanUtils.copyProperties(clientDto, this);
+        return this;
     }
 
 }

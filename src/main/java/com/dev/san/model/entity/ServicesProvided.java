@@ -4,7 +4,6 @@ import lombok.Data;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.UUID;
 
 @Entity
 @Data
@@ -14,7 +13,7 @@ public class ServicesProvided implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    private Integer id;
     @Column(name = "service_description", nullable = false, length = 255)
     private String serviceDescription;
     @ManyToOne

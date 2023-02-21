@@ -1,6 +1,8 @@
 package com.dev.san.model.repository;
 
+import com.dev.san.dto.ClientDto;
 import com.dev.san.model.entity.Client;
+import com.dev.san.util.ClientCreator;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -9,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.util.Optional;
-import java.util.UUID;
+import java.util.Random;
 
 import static com.dev.san.util.ClientCreator.createClientToBeSave;
 
@@ -18,6 +20,7 @@ import static com.dev.san.util.ClientCreator.createClientToBeSave;
 @DataJpaTest
 @DisplayName("Tests for client repository")
 class ClientRepositoryTest {
+    private static Random random = new Random();
     @Autowired
     private ClientRepository clientRepository;
 
@@ -35,9 +38,7 @@ class ClientRepositoryTest {
     void saveUpdatesClientWhenSuccessful() {
         Client clientToBeSaved = createClientToBeSave();
         Client clientSaved = this.clientRepository.save(clientToBeSaved);
-        clientSaved.setFullName("Walter Bruce Willis");
-        Client clientUpdated = this.clientRepository.save(clientSaved);
-        log.info("[>] Client name updated, {}", clientUpdated.getFullName());
+        Client clientUpdated = this.clientRepository.save(ClientCreator.updateValidClient());
         Assertions.assertThat(clientUpdated).isNotNull();
         Assertions.assertThat(clientUpdated.getId()).isNotNull();
         Assertions.assertThat(clientUpdated.getFullName()).isEqualTo(clientSaved.getFullName());
@@ -65,16 +66,15 @@ class ClientRepositoryTest {
     @Test
     @DisplayName("Find by ID return null when no client is found")
     void findByIDReturnNullWhenNoClientIsNotFound() {
-        Optional<Client> client = this.clientRepository.findById(UUID.randomUUID());
+        Optional<Client> client = this.clientRepository.findById(random.nextInt(200));
         Assertions.assertThat(client).isNotPresent();
     }
 
     @Test
-    @DisplayName("Find by cpf return null when no client is found")
-    void findByCpfReturnNullWhenNoClientIsNotFound() {
+    @DisplayName("Find by ID return null when no client is found")
+    void findByIdReturnNullWhenNoClientIsNotFound() {
         Client client = this.clientRepository.findByCpf("abcdefghijl");
         Assertions.assertThat(client).isNull();
     }
-
 
 }
