@@ -1,6 +1,5 @@
 package com.dev.san.model.repository;
 
-import com.dev.san.dto.ClientDto;
 import com.dev.san.model.entity.Client;
 import com.dev.san.util.ClientCreator;
 import lombok.extern.slf4j.Slf4j;

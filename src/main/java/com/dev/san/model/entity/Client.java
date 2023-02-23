@@ -25,10 +25,10 @@ public class Client implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @Column(name = "full_name", nullable = false, length = 150)
-    @NotBlank
+    @NotBlank(message = "Mandatory full name cannot be empty.")
     private String fullName;
     @Column(nullable = false, unique = true, length = 11)
-    @NotBlank(message = "Mandatory CPF. Information not fund.")
+    @NotBlank(message = "The CPF cannot be empty")
     private String cpf;
     @Column(name = "service_date")
     private LocalDate serviceDate;
