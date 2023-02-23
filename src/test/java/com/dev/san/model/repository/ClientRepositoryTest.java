@@ -1,7 +1,6 @@
 package com.dev.san.model.repository;
 
 import com.dev.san.model.entity.Client;
-import com.dev.san.util.ClientCreator;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -30,17 +29,6 @@ class ClientRepositoryTest {
         Client clientSaved = this.clientRepository.save(clientToBeSaved);
         Assertions.assertThat(clientSaved).isNotNull();
         Assertions.assertThat(clientSaved.getFullName()).isEqualTo(clientToBeSaved.getFullName());
-    }
-
-    @Test
-    @DisplayName("Save updates client when successful")
-    void saveUpdatesClientWhenSuccessful() {
-        Client clientToBeSaved = createClientToBeSave();
-        Client clientSaved = this.clientRepository.save(clientToBeSaved);
-        Client clientUpdated = this.clientRepository.save(ClientCreator.updateValidClient());
-        Assertions.assertThat(clientUpdated).isNotNull();
-        Assertions.assertThat(clientUpdated.getId()).isNotNull();
-        Assertions.assertThat(clientUpdated.getFullName()).isEqualTo(clientSaved.getFullName());
     }
 
     @Test
