@@ -1,0 +1,7 @@
+com/dev/san/service/ClientServiceTest.class
+com/dev/san/model/repository/ServicesProvidedRepositoryTest.class
+com/dev/san/service/ServiceProvidedServiceTest.class
+com/dev/san/controller/ClientControllerTest.class
+com/dev/san/util/ClientCreator.class
+com/dev/san/util/ServiceProvidedCreator.class
+com/dev/san/model/repository/ClientRepositoryTest.class

@@ -1,11 +1,10 @@
 package com.dev.san.model.entity;
 
-import com.dev.san.dto.ClientDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.beans.BeanUtils;
+import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -22,25 +21,24 @@ public class Client implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @Column(name = "full_name", nullable = false, length = 150)
-    @NotBlank(message = "Mandatory full name cannot be empty.")
+    @NotBlank(message = "{field.is.required}")
     private String fullName;
+
     @Column(nullable = false, unique = true, length = 11)
-    @NotBlank(message = "The CPF cannot be empty")
+    @NotBlank(message = "{field.is.required}")
+    @CPF(message = "{field.cpf.invalid}")
     private String cpf;
+
     @Column(name = "service_date")
     private LocalDate serviceDate;
 
     @PrePersist
     private void prePersist(){
         setServiceDate(LocalDate.now());
-    }
-
-    public Client convert(ClientDto clientDto){
-        BeanUtils.copyProperties(clientDto, this);
-        return this;
     }
 
 }

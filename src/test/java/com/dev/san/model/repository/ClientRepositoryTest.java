@@ -1,5 +1,6 @@
 package com.dev.san.model.repository;
 
+import com.dev.san.dto.ClientPostDto;
 import com.dev.san.model.entity.Client;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
@@ -12,6 +13,7 @@ import java.util.Optional;
 import java.util.Random;
 
 import static com.dev.san.util.ClientCreator.createClientToBeSave;
+import static com.dev.san.util.ClientCreator.createValidClient;
 
 
 @Slf4j
@@ -25,17 +27,17 @@ class ClientRepositoryTest {
     @Test
     @DisplayName("Save persists client when successful")
     void savePersistClientWhenSuccessful() {
-        Client clientToBeSaved = createClientToBeSave();
-        Client clientSaved = this.clientRepository.save(clientToBeSaved);
+        final Client clientToBeSave = createValidClient();
+        Client clientSaved = this.clientRepository.save(clientToBeSave);
         Assertions.assertThat(clientSaved).isNotNull();
-        Assertions.assertThat(clientSaved.getFullName()).isEqualTo(clientToBeSaved.getFullName());
+        Assertions.assertThat(clientSaved.getFullName()).isEqualTo(clientToBeSave.getFullName());
     }
 
     @Test
     @DisplayName("Delete removes client when successful")
     void deleteRemovesClientWhenSuccessful() {
-        Client clientToBeSaved = createClientToBeSave();
-        Client clientSaved = this.clientRepository.save(clientToBeSaved);
+        final Client clientToBeSave = createValidClient();
+        Client clientSaved = this.clientRepository.save(clientToBeSave);
         this.clientRepository.delete(clientSaved);
         Optional<Client> clientOptional = this.clientRepository.findById(clientSaved.getId());
         Assertions.assertThat(clientOptional).isEmpty();
@@ -44,8 +46,8 @@ class ClientRepositoryTest {
     @Test
     @DisplayName("Find by cpf return client when successful")
     void findByCpfReturnClientWhenSuccessful() {
-        Client clientToBeSaved = createClientToBeSave();
-        Client clientSaved = this.clientRepository.save(clientToBeSaved);
+        final Client clientToBeSave = createValidClient();
+        Client clientSaved = this.clientRepository.save(clientToBeSave);
         Client client = this.clientRepository.findByCpf(clientSaved.getCpf());
         Assertions.assertThat(client).isNotNull();
     }
