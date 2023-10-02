@@ -33,7 +33,7 @@ public class ClientController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Client> findById(@PathVariable(value = "id") Integer id) {
-        return ResponseEntity.ok(this.clientService.findB   yId(id));
+        return ResponseEntity.ok(this.clientService.findById(id));
     }
 
     @GetMapping("/{cpf}/cpf")

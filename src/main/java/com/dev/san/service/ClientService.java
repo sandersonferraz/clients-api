@@ -37,7 +37,7 @@ public class ClientService {
     public Client findById(int id) {
         Optional<Client> clientOptional = this.clientRepository.findById(id);
         if (!clientOptional.isPresent())
-            throw new BadRequestException("NOT_FOUND!");
+            throw new BadRequestException("NOT_FOUND CLIENT!");
         return clientOptional.get();
     }
 
@@ -49,7 +49,7 @@ public class ClientService {
     public Client findByCpf(String cpf) {
         Client client = this.clientRepository.findByCpf(cpf);
         if (Objects.isNull(client))
-            throw new BadRequestException("NOT_FOUND!");
+            throw new BadRequestException("NOT_FOUND CPF!");
         return client;
     }
 
