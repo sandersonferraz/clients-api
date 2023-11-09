@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 
 @Log4j2
 @RestControllerAdvice
-public class    RestExceptionHandler extends ResponseEntityExceptionHandler {
+public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(BadRequestException.class)
     public ResponseEntity<BadRequestExceptionDetails> handleBadRequestException(
