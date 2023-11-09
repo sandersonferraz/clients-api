@@ -17,14 +17,14 @@ import javax.validation.Valid;
 
 @RestController
 @AllArgsConstructor
-@CrossOrigin(origins = "*", maxAge = 3600)
-@RequestMapping("/api/clients/v1")
 @Slf4j
+@RequestMapping("/api/clients/v1")
+@CrossOrigin("http://localhost:4200")
 public class ClientController {
     private final ClientService clientService;
 
 
-    @GetMapping("/")
+    @GetMapping()
     public ResponseEntity<Page<Client>> listAll(Pageable pageable) {
         Page<Client> clients = this.clientService.listAll(pageable);
         log.info(clients.toString());
@@ -43,7 +43,7 @@ public class ClientController {
         return ResponseEntity.ok(clientPostDto);
     }
 
-    @PostMapping("/")
+    @PostMapping()
     public ResponseEntity<Client> save(@Valid @RequestBody ClientPostDto clientPostDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(this.clientService.save(clientPostDto));
     }

@@ -34,7 +34,7 @@ public class Client implements Serializable {
     private String cpf;
 
     @Column(name = "service_date")
-    private LocalDate serviceDate;
+        private LocalDate serviceDate;
 
     @PrePersist
     private void prePersist(){
