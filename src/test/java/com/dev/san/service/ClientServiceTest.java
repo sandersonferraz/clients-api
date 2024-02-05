@@ -1,6 +1,7 @@
 package com.dev.san.service;
 
-import com.dev.san.dto.ClientDto;
+import com.dev.san.dto.ClientPostDto;
+import com.dev.san.model.entity.Client;
 import com.dev.san.model.repository.ClientRepository;
 import com.dev.san.util.ClientCreator;
 import lombok.extern.slf4j.Slf4j;
@@ -9,8 +10,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import static org.mockito.BDDMockito.*;
-
 import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -19,6 +18,9 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import static org.mockito.BDDMockito.doNothing;
+import static org.mockito.BDDMockito.when;
 
 @Slf4j
 @ExtendWith(SpringExtension.class)
@@ -34,22 +36,33 @@ class ClientServiceTest {
         clientsList.add(ClientCreator.createValidClient());
         Integer clientId = ClientCreator.createValidClient().getId();
         String clientCPF = ClientCreator.createValidClient().getCpf();
+
         when(clientRepositoryMock.findAll()).thenReturn(clientsList);
         when(clientRepositoryMock.findById(clientId))
                 .thenReturn(Optional.ofNullable(ClientCreator.createValidClient()));
         when(clientRepositoryMock.findByCpf(clientCPF))
                 .thenReturn(ClientCreator.createValidClient());
-        when(clientRepositoryMock.save(ArgumentMatchers.any()))
+        when(clientRepositoryMock.save(ArgumentMatchers.any(Client.class)))
                 .thenReturn(ClientCreator.createValidClient());
         doNothing().when(clientRepositoryMock).delete(ArgumentMatchers.any());
 
     }
 
     @Test
-    @DisplayName("FindAll returns a list of CLients when successful.")
+    @DisplayName("save returns a clients when successful.")
+    void saveReturnsClientWhenSuccessful(){
+        final ClientPostDto clientToBeSave = ClientCreator.createClientToBeSave();
+        Client clientSaved = clientService.save(clientToBeSave);
+        Assertions.assertThat(clientSaved).isNotNull();
+        Assertions.assertThat(clientSaved.getCpf()).isEqualTo(clientToBeSave.getCpf());
+        Assertions.assertThat(clientSaved.getFullName()).isEqualTo(clientToBeSave.getFullName());
+    }
+
+    @Test
+    @DisplayName("FindAll returns a list of Clients when successful.")
     void findAllReturnsListClientsWhenSuccessful(){
         String expectedFullName = ClientCreator.createValidClient().getFullName();
-        List<ClientDto> clients = clientService.findAllNonPageable();
+        List<Client> clients = clientService.findAllNonPageable();
         Assertions.assertThat(clients)
                 .isNotNull()
                 .isNotEmpty()
@@ -61,7 +74,7 @@ class ClientServiceTest {
     @DisplayName("FIndById Returns Clint when Successful.")
     void findByIdReturnsClientWhenSuccessful(){
         Integer expectedClientId = ClientCreator.createValidClient().getId();
-        ClientDto client = clientService.findById(expectedClientId);
+        Client client = clientService.findById(expectedClientId);
         Assertions.assertThat(client).isNotNull();
         Assertions.assertThat(client.getId()).isNotNull().isEqualTo(expectedClientId);
     }
@@ -70,31 +83,24 @@ class ClientServiceTest {
     @DisplayName("FindByCPF return Client when successful.")
     void findByCpfReturnsClientWhenSuccessful(){
         String expectedClientCPF = ClientCreator.createValidClient().getCpf();
-        ClientDto client = clientService.findByCpf(expectedClientCPF);
+        Client client = clientService.findByCpf(expectedClientCPF);
         Assertions.assertThat(client).isNotNull();
         Assertions.assertThat(client.getCpf()).isNotNull().isEqualTo(expectedClientCPF);
     }
 
     @Test
-    @DisplayName("save returns a clients when successful.")
-    void saveReturnsClientWhenSuccessful(){
-        ClientDto clientSaved = clientService.save(ClientCreator.convert(ClientCreator.createValidClient()));
-        Assertions.assertThat(clientSaved).isNotNull().isEqualTo(ClientCreator.convert(ClientCreator.createValidClient()));
-    }
-
-    @Test
     @DisplayName("update returns a client when successful.")
     void updateReturnsClientWhenSuccessful() {
-        ClientDto clientUpdated = clientService.save(ClientCreator.convert(ClientCreator.createValidClient()));
+        Client clientUpdated = clientService.replace(ClientCreator.updateValidClient());
         Assertions.assertThat(clientUpdated).isNotNull()
-                .isEqualTo(ClientCreator.convert(ClientCreator.createValidClient()));
+                .isEqualTo(ClientCreator.createValidClient());
     }
 
     @Test
     @DisplayName("delete removes client when successful.")
     void deleteRemovesClientWhenSuccessful() {
-        ClientDto expectedClient = ClientCreator.convert(ClientCreator.createValidClient());
-        Assertions.assertThatCode(()-> clientService.delete(expectedClient))
+        Client expectedClient = ClientCreator.createValidClient();
+        Assertions.assertThatCode(()-> clientService.delete(expectedClient.getId()))
                 .doesNotThrowAnyException();
     }
 
