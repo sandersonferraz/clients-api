@@ -23,15 +23,18 @@ public class Client implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @Column(name = "full_name", nullable = false, length = 150)
     @NotBlank(message = "{field.is.required}")
     private String fullName;
+
     @Column(nullable = false, unique = true, length = 11)
     @NotBlank(message = "{field.is.required}")
     @CPF(message = "{field.cpf.invalid}")
     private String cpf;
+
     @Column(name = "service_date")
-    private LocalDate serviceDate;
+        private LocalDate serviceDate;
 
     @PrePersist
     private void prePersist(){
