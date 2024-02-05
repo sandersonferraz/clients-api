@@ -19,7 +19,7 @@ public class ClientPostDto {
     private String fullName;
     @NotBlank(message = "{field.is.required}")
     @CPF(message = "{field.is.invalid}")
-    @Size(max = 11, message = "{field.max.11}")
+    @Size(max = 14, message = "{field.max.11}")
     private String cpf;
 
 }

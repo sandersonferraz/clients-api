@@ -5,20 +5,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ClientPutDto {
+public class ClientDto {
 
-    @NotBlank
-    @Size(max = 150)
+    private Integer id;
     private String fullName;
-    @NotBlank
-    @Size(max = 14)
     private String cpf;
-
+    private String serviceDate;
 }
