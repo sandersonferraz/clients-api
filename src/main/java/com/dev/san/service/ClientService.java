@@ -36,7 +36,7 @@ public class ClientService {
 
     public Client findById(int id) {
         Optional<Client> clientOptional = this.clientRepository.findById(id);
-        if (!clientOptional.isPresent())
+        if (clientOptional.isEmpty())
             throw new BadRequestException("{msg.not.found}");
         return clientOptional.get();
     }

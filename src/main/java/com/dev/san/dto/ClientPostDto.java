@@ -14,12 +14,12 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 @Builder
 public class ClientPostDto {
-    @NotBlank(message = "{field.is.required}")
-    @Size(max = 150, message = "{field.max.150}")
+    @NotBlank(message = "{fullName.is.required}")
+    @Size(max = 150, message = "{fullName.max.characters}")
     private String fullName;
-    @NotBlank(message = "{field.is.required}")
-    @CPF(message = "{field.is.invalid}")
-    @Size(max = 14, message = "{field.max.11}")
+    @NotBlank(message = "{cpf.is.required}")
+    @CPF(message = "{cpf.is.invalid}")
+    @Size(max = 14, message = "{cpf.max.characters}")
     private String cpf;
 
 }

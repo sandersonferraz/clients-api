@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.br.CPF;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -13,12 +14,13 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 @Builder
 public class ClientPutDto {
-
-    @NotBlank
-    @Size(max = 150)
+    private Integer id;
+    @NotBlank(message = "{fullName.is.required}")
+    @Size(max = 150, message = "{fullName.max.characters}")
     private String fullName;
-    @NotBlank
-    @Size(max = 14)
+    @NotBlank(message = "{cpf.is.required}")
+    @CPF(message = "{cpf.is.invalid}")
+    @Size(max = 14, message = "{cpf.max.characters}")
     private String cpf;
 
 }
