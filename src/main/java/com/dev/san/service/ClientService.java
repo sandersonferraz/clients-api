@@ -6,12 +6,12 @@ import com.dev.san.excption.BadRequestException;
 import com.dev.san.mapper.ClientMapper;
 import com.dev.san.model.entity.Client;
 import com.dev.san.model.repository.ClientRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;

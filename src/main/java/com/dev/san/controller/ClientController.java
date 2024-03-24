@@ -4,6 +4,7 @@ import com.dev.san.dto.ClientPostDto;
 import com.dev.san.dto.ClientPutDto;
 import com.dev.san.model.entity.Client;
 import com.dev.san.service.ClientService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -13,7 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+
 
 @RestController
 @AllArgsConstructor

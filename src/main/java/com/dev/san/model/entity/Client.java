@@ -1,13 +1,14 @@
 package com.dev.san.model.entity;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.br.CPF;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -18,6 +19,7 @@ import java.time.LocalDate;
 @Builder
 @Table(name = "clients")
 public class Client implements Serializable {
+
 
     private static final long serialVersionUID = 1L;
     @Id

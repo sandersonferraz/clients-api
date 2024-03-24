@@ -7,6 +7,7 @@ com/dev/san/dto/ClientPutDto.class
 com/dev/san/excption/ValidationExceptionDetails$ValidationExceptionDetailsBuilder.class
 com/dev/san/dto/ClientPutDto$ClientPutDtoBuilder.class
 com/dev/san/excption/BadRequestExceptionDetails$BadRequestExceptionDetailsBuilder.class
+com/dev/san/dto/ClientDto.class
 com/dev/san/mapper/ClientMapperImpl.class
 com/dev/san/excption/ValidationExceptionDetails$ValidationExceptionDetailsBuilderImpl.class
 com/dev/san/mapper/ClientMapper.class
@@ -23,6 +24,7 @@ com/dev/san/model/repository/ServiceProvidedRepository.class
 com/dev/san/controller/ClientController.class
 com/dev/san/model/entity/Client$ClientBuilder.class
 com/dev/san/mapper/ServicesProvidedMapperImpl.class
+com/dev/san/dto/ClientDto$ClientDtoBuilder.class
 com/dev/san/excption/ExceptionDetails.class
 com/dev/san/model/entity/ServicesProvided$ServicesProvidedBuilder.class
 com/dev/san/dto/ServicesProvidedPutDto.class

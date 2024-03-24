@@ -7,6 +7,7 @@
 /home/san/Documents/Projects/Knowledges/Java/Spring Boot/clients-api/src/main/java/com/dev/san/model/repository/ServiceProvidedRepository.java
 /home/san/Documents/Projects/Knowledges/Java/Spring Boot/clients-api/src/main/java/com/dev/san/mapper/ServicesProvidedMapper.java
 /home/san/Documents/Projects/Knowledges/Java/Spring Boot/clients-api/src/main/java/com/dev/san/excption/BadRequestException.java
+/home/san/Documents/Projects/Knowledges/Java/Spring Boot/clients-api/src/main/java/com/dev/san/dto/ClientDto.java
 /home/san/Documents/Projects/Knowledges/Java/Spring Boot/clients-api/src/main/java/com/dev/san/excption/BadRequestExceptionDetails.java
 /home/san/Documents/Projects/Knowledges/Java/Spring Boot/clients-api/src/main/java/com/dev/san/config/DateConfig.java
 /home/san/Documents/Projects/Knowledges/Java/Spring Boot/clients-api/src/main/java/com/dev/san/dto/ServicesProvidedPostDto.java

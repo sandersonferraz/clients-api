@@ -7,8 +7,8 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-03-24T00:48:12-0300",
-    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 11.0.22 (Ubuntu)"
+    date = "2024-03-24T19:04:37-0300",
+    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 17.0.10 (Private Build)"
 )
 public class ClientMapperImpl implements ClientMapper {
 
@@ -51,6 +51,7 @@ public class ClientMapperImpl implements ClientMapper {
         clientPutDto.id( client.getId() );
         clientPutDto.fullName( client.getFullName() );
         clientPutDto.cpf( client.getCpf() );
+        clientPutDto.serviceDate( client.getServiceDate() );
 
         return clientPutDto.build();
     }
