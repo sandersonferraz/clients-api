@@ -29,3 +29,17 @@ k
 ;src/main/java/com/dev/san/handler/RestExceptionHandler.java,c/4/c41cbf138d423ce7b146a583a5ae8806fb2c78c8
 a
 1src/test/java/com/dev/san/util/ClientCreator.java,5/2/5247068801858659c3f2f6954b6bf2fe0f7363cc
+i
+9src/main/java/com/dev/san/model/entity/auth/UserRole.java,d/5/d50cabc5e3e8d331695a63513741de4ad5428391
+n
+>src/main/java/com/dev/san/model/repository/UserRepository.java,3/1/312af58cc2468991d3ce327c0f35753794e06203
+f
+6src/main/java/com/dev/san/model/entity/auth/Users.java,d/b/db6a4471c01a25f296bdd0e8512d7f4534dc871f
+p
+@src/main/java/com/dev/san/service/auth/AuthorizationService.java,3/4/344dedbf965d758101ce043f1545fdebac307164
+t
+Dsrc/main/java/com/dev/san/infra/security/SecurityConfigurations.java,1/1/11eb5588a6fc6dfb3b6d98b0fef2af5fa89a60cd
+a
+1src/main/java/com/dev/san/ClientsApplication.java,c/3/c321765c291026b4501d0509b2f56fc984c5f0c3
+B
+docker-compose.yml,3/5/35b8c13cf2eb2a194eada000eb310d65aed53b2a
