@@ -27,4 +27,7 @@ spring:
     locations: classpath:db/migration
     baseline-description: "init"
     baseline-version: 0
-
+api:
+  security:
+    token:
+      secret: ${JWT_SECRET:my-secret-key}
