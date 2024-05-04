@@ -4,16 +4,12 @@ services:
 
   db:
     image: postgres:14-alpine
-    container_name: "oath_jwt_security_db"
+    container_name: "client_db"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: oath_jwt_security_db
+      POSTGRES_DB: client_db
     volumes:
       - "/home/san/data/postgres:/var/lib/postgresql/data"
     ports:
       - "5432:5432"
-    expose:
-      - "5432"
-    command:
-      - "chmod 777 /var/lib/postgresql/data -r"
